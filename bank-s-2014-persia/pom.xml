@@ -11,7 +11,6 @@
     <!-- persistence features -->
     <!-- possible improvement: 
     use hibernate instead of implementing DAOs and RowMappers
-    use sequence autoincrement for id column
     add real world restrictions to length of IBAN and BIC
     add unique to columns
     add unsigned to id column
