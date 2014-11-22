@@ -9,6 +9,14 @@
     </parent>
     
     <!-- persistence features -->
+    <!-- possible improvement: 
+    use hibernate instead of implementing DAOs and RowMappers
+    use sequence autoincrement for id column
+    add real world restrictions to length of IBAN and BIC
+    add unique to columns
+    add unsigned to id column
+    use hibernate properties to create schema and tables
+    -->
     <artifactId>bank-s-2014-persia</artifactId>
     
     <packaging>jar</packaging>
@@ -24,6 +32,16 @@
 			<artifactId>spring-jdbc</artifactId>
 			<version>${spring.version}</version>
 		</dependency>
+		<dependency>
+	        <groupId>org.hsqldb</groupId>
+	        <artifactId>hsqldb</artifactId>
+	        <version>2.3.2</version>
+	    </dependency>
+	    <dependency>
+	        <groupId>org.liquibase</groupId>
+	        <artifactId>liquibase-core</artifactId>
+	        <version>2.0.5</version>
+	    </dependency>
 	</dependencies>
     
 </project>
