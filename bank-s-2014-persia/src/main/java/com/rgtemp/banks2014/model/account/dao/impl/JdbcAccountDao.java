@@ -34,6 +34,11 @@ public class JdbcAccountDao extends JdbcDaoSupport implements AccountDao {
 
 	@Override
 	public void insert(Account account) {
+		/* 
+		 * possible improvement: add constraints on iban and bic before
+		 * 		trying to persist.  
+		 * 
+		 */
 		String sql = "INSERT INTO account " +
 				"(iban, bic) VALUES (?, ?, ?)";
 				 
@@ -41,12 +46,6 @@ public class JdbcAccountDao extends JdbcDaoSupport implements AccountDao {
 						account.getIban(), account.getBic()  
 			);
 		
-//		String sql = "INSERT INTO CUSTOMER " +
-//				"(CUST_ID, NAME, AGE) VALUES (?, ?, ?)";
-//				 
-//			getSimpleJdbcTemplate().update(sql, customer.getCustId(),
-//						customer.getName(),customer.getAge()  
-//			);
 		throw new RuntimeException("Implement me");
 	}
 
