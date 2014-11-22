@@ -9,8 +9,9 @@ public class AccountRowMapper implements ParameterizedRowMapper<Account> {
 	
 	public Account mapRow(ResultSet rs, int rowNum) throws SQLException {
 		Account account = new Account();
-//		account.setIban(rs.getString("iban"));
-//		account.setBic(rs.getString("iban"));
+		account.setAccId(rs.getLong("acc_id"));
+		account.setIban(rs.getString("iban"));
+		account.setBic(rs.getString("bic"));
 		
 		return account;
 	}

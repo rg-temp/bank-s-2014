@@ -1,7 +1,5 @@
 package com.rgtemp.banks2014.model;
 
-import java.util.Locale;
-
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.junit.Test;
@@ -28,22 +26,24 @@ public class AccountTest {
 	
 	@Test
 	public void thatCanBeDeleted() {
-		//Prevent framework exceptions from being shown in German or Spanish
-		Locale.setDefault(Locale.ENGLISH);
 		ApplicationContext context = 
 	    		new ClassPathXmlApplicationContext("Beans.xml");
 
  		AccountDao accountDao = (AccountDao) context.getBean("jdbcAccountDao");
  		//count
  		Integer count = accountDao.count();
- 		//create
+		//create
+ 		Account account = new Account(accountDao.getNextId(), "d1", "ad1");
+ 		accountDao.insert(account);
  		Integer newCount;
  		//newCount
  		newCount = accountDao.count();
- 		//assert count (same as in create)
- 		//select 
+ 		//assert count
+ 		assertThat("Number of accounts should increase after creating an account", newCount, is(count + 1));
+ 		//select
+ 		account = accountDao.find("d1", "ad1");
  		//get id
- 		Integer id = Integer.MIN_VALUE;
+ 		Long id = account.getAccId();
  		//delete
  		accountDao.delete(id);
  		//new count

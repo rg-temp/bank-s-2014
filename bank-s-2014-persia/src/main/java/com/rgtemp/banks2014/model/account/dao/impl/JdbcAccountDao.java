@@ -1,16 +1,14 @@
 package com.rgtemp.banks2014.model.account.dao.impl;
 
-import java.sql.Connection;
 import java.util.List;
-
 import javax.sql.DataSource;
-
 import org.springframework.stereotype.Repository;
 import org.springframework.jdbc.core.support.JdbcDaoSupport;
 import org.springframework.jdbc.core.simple.ParameterizedBeanPropertyRowMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.rgtemp.banks2014.model.Account;
+import com.rgtemp.banks2014.model.AccountRowMapper;
 import com.rgtemp.banks2014.model.account.dao.AccountDao;
 
 @Repository
@@ -28,8 +26,9 @@ public class JdbcAccountDao extends JdbcDaoSupport implements AccountDao {
 	}
 	
 	@Override
-	public void delete(Integer id) {
-		String sql = "DELETE * FROM account WHERE acc_id = ?";
+	public void delete(Long id) {
+		String sql = "DELETE FROM account WHERE acc_id = ?";
+		getJdbcTemplate().update(sql, id);
 	}
 
 	@Override
@@ -40,23 +39,21 @@ public class JdbcAccountDao extends JdbcDaoSupport implements AccountDao {
 		 * 
 		 */
 		String sql = "INSERT INTO account " +
-				"(iban, bic) VALUES (?, ?, ?)";
+				"(acc_id, iban, bic) VALUES (?, ?, ?)";
 				 
 			getJdbcTemplate().update(sql, account.getAccId(), 
 						account.getIban(), account.getBic()  
 			);
-		
-		throw new RuntimeException("Implement me");
 	}
 
 	@Override
-	public Account findById(Integer id) {
+	public Account findById(Long id) {
 		throw new RuntimeException("Implement me");
 //		return null;
 	}
 
 	@Override
-	public void update(Integer id) {
+	public void update(Long id) {
 		throw new RuntimeException("Implement me");
 	}
 
@@ -73,5 +70,24 @@ public class JdbcAccountDao extends JdbcDaoSupport implements AccountDao {
 	public int count() {
 		// Possible improvement: use sql count, no need to read contents of columns
 		return list().size();
+	}
+
+	@Override
+	public long getNextId() {
+		String sql = "SELECT MAX(acc_id) FROM account";
+		
+		// Possible improvement: prevent autoboxing.
+		long id = getJdbcTemplate().queryForObject(sql, Long.class);
+				
+		return id + 1;
+	}
+
+	@Override
+	public Account find(String iban, String bic) {
+		String sql = "SELECT * FROM account WHERE iban = ? AND bic = ? LIMIT 1";
+		Account account = getJdbcTemplate().queryForObject(
+				sql,  new AccountRowMapper(), iban, bic);
+	
+		return account;
 	}
 }
