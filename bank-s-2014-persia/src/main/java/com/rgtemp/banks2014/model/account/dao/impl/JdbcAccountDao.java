@@ -34,6 +34,19 @@ public class JdbcAccountDao extends JdbcDaoSupport implements AccountDao {
 
 	@Override
 	public void insert(Account account) {
+		String sql = "INSERT INTO account " +
+				"(iban, bic) VALUES (?, ?, ?)";
+				 
+			getJdbcTemplate().update(sql, account.getAccId(), 
+						account.getIban(), account.getBic()  
+			);
+		
+//		String sql = "INSERT INTO CUSTOMER " +
+//				"(CUST_ID, NAME, AGE) VALUES (?, ?, ?)";
+//				 
+//			getSimpleJdbcTemplate().update(sql, customer.getCustId(),
+//						customer.getName(),customer.getAge()  
+//			);
 		throw new RuntimeException("Implement me");
 	}
 
