@@ -6,6 +6,7 @@ import javax.sql.DataSource;
 
 import org.springframework.stereotype.Repository;
 import org.springframework.jdbc.core.support.JdbcDaoSupport;
+import org.springframework.jdbc.core.simple.ParameterizedBeanPropertyRowMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.rgtemp.banks2014.model.Account;
@@ -15,7 +16,8 @@ import com.rgtemp.banks2014.model.account.dao.AccountDao;
 public class JdbcAccountDao extends JdbcDaoSupport implements AccountDao {
 /*
  * Possible improvement:
- * Configure bean annotation to have id="accountDAO" instead of id="jdbcAccountDAO" 
+ * Configure bean annotation to have id="accountDAO" instead of id="jdbcAccountDAO"
+ * Extract string account as TABLE_NAME
  */
 	
 	@Autowired 
@@ -26,7 +28,7 @@ public class JdbcAccountDao extends JdbcDaoSupport implements AccountDao {
 	
 	@Override
 	public void delete(Integer id) {
-		throw new RuntimeException("Implement me");
+		String sql = "DELETE * FROM account WHERE acc_id = ?";
 	}
 
 	@Override
@@ -47,7 +49,17 @@ public class JdbcAccountDao extends JdbcDaoSupport implements AccountDao {
 
 	@Override
 	public List<Account> list() {
-		throw new RuntimeException("Implement me");
-//		return null;
+		String sql = "SELECT * FROM account";
+
+		List<Account> accounts = getJdbcTemplate().query(sql,
+				ParameterizedBeanPropertyRowMapper.newInstance(Account.class));
+
+		return accounts;
+	}
+
+	@Override
+	public int count() {
+		// Possible improvement: use sql count, no need to read contents of columns
+		return list().size();
 	}
 }

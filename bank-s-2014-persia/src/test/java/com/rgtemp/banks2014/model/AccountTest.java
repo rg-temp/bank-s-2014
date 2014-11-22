@@ -13,7 +13,12 @@ public class AccountTest {
 
 	/*
 	 * Possible improvement:
-	 * add test for thatDeletingNonExistingLogsAWarning(), 
+	 * add test for 
+	 * thatCanBeCreated
+	 * thatCanBeRead
+	 * thatCanBeUpdated
+	 * 
+	 * thatDeletingNonExistingLogsAWarning(), 
 	 * thatCreatingExistingThrowsAnException(), 
 	 * thatReadingNonExistingFoo(),
 	 * thatUpdatingNonExistingLogsAWarning(),
@@ -25,9 +30,22 @@ public class AccountTest {
 	    		new ClassPathXmlApplicationContext("Beans.xml");
 
  		AccountDao accountDao = (AccountDao) context.getBean("jdbcAccountDao");
-		Integer id = Integer.MIN_VALUE;
-		accountDao.delete(id);
-		assertThat("rsn", 2, is(2));
+ 		//count
+ 		Integer count = accountDao.count();
+ 		//create
+ 		Integer newCount;
+ 		//newCount
+ 		newCount = accountDao.count();
+ 		//assert count (same as in create)
+ 		//select 
+ 		//get id
+ 		Integer id = Integer.MIN_VALUE;
+ 		//delete
+ 		accountDao.delete(id);
+ 		//new count
+		newCount = accountDao.count();
+ 		//assert count (same as in create)
+		assertThat("Number of accounts should decrease after delete an existing account", newCount, is(count));
 	}
 	
 	@Test

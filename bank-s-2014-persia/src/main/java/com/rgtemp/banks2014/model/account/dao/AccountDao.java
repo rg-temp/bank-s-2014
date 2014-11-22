@@ -16,6 +16,8 @@ public interface AccountDao {
 
 	public void delete(Integer id);
 	
+	public int count();
+	
 	public List<Account> list();
 
 }
