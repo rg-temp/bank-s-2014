@@ -4,7 +4,7 @@ CREATE TABLE public.account
 iban CHAR(2) NOT NULL,
 bic CHAR(3) NOT NULL);
 
-INSERT INTO account (iban, bic) VALUES 
+INSERT INTO public.account (iban, bic) VALUES 
 ('i1','aaa'),
 ('i2','bbb'),
 ('i3','ccc');

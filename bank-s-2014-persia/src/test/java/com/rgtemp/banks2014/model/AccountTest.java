@@ -1,5 +1,7 @@
 package com.rgtemp.banks2014.model;
 
+import java.util.Locale;
+
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.junit.Test;
@@ -26,6 +28,8 @@ public class AccountTest {
 	
 	@Test
 	public void thatCanBeDeleted() {
+		//Prevent framework exceptions from being shown in German or Spanish
+		Locale.setDefault(Locale.ENGLISH);
 		ApplicationContext context = 
 	    		new ClassPathXmlApplicationContext("Beans.xml");
 

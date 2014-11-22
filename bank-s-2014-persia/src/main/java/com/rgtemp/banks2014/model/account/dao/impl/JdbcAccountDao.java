@@ -1,5 +1,6 @@
 package com.rgtemp.banks2014.model.account.dao.impl;
 
+import java.sql.Connection;
 import java.util.List;
 
 import javax.sql.DataSource;
@@ -49,8 +50,7 @@ public class JdbcAccountDao extends JdbcDaoSupport implements AccountDao {
 
 	@Override
 	public List<Account> list() {
-		String sql = "SELECT * FROM account";
-
+		String sql = "SELECT * FROM PUBLIC.ACCOUNT";
 		List<Account> accounts = getJdbcTemplate().query(sql,
 				ParameterizedBeanPropertyRowMapper.newInstance(Account.class));
 
