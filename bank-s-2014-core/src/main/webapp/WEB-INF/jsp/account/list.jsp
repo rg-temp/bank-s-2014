@@ -1,6 +1,7 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <html>
 <head>
+	<script src="<c:url value="/resources/js/jquery-2.1.1.min.js" />"></script>
     <title>List</title>
 </head>
 <body>
@@ -11,7 +12,7 @@
 	<ul>
 		<c:forEach var="accountInstance" items="${accounts}">
 			<li>
-		 	<form action="submit" method="post">
+		 	<form action="${uriContext}/submit" method="get">
 		 		<%-- use acc_id since values or html attribute should ignore case --%>
 				AccId: <input type="text" name="acc_id" value="${accountInstance.accId}">
 				<span></span>
@@ -36,6 +37,12 @@
 	<input type="submit" value="submit">
 	<input type="submit" name="action" value="reset">
 </form>
+<script>
+$(document).ready(function() {
+	<%-- Declare function for each button --%>
+	<%-- Attach function to each button --%>
+});
+  </script>
 
 </body>
 <%-- possible improvement: 
@@ -64,6 +71,12 @@
 			to list or show with flash message with the result of the 
 					delete or edit operation
 		views create and edit should reuse the same form partial template view
-	use spring i18n for the content
+	use unobtrusive JS on submit to perform validation on the client consider 
+			using AngularJS to perform part of the safe logic on the client and
+			dynamic display logic
+	use deferred load for js
+	use "use strict;"
+	populate fields with js once the page is loaded.
+	use spring i18n for the content or js framework
 --%>
 </html>

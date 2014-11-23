@@ -8,7 +8,6 @@
     <version>0.0.1-SNAPSHOT</version>
     
     <packaging>pom</packaging>
-    <!-- possible improvement: add module for model, add module webapp to for web application and RESTful verbs API -->
     <modules>
         <module>bank-s-2014-core</module>
         <module>bank-s-2014-persia</module>
@@ -59,4 +58,9 @@
         </plugins>
     </build>
     
+<!-- possible improvement: 
+add module for model, add module webapp to for web application and RESTful verbs API
+configure maven build to start a HQSL server, and run DDL and SQL with demo data
+configure maven test to run tests located on the test folders
+-->
 </project>

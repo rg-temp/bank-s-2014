@@ -38,7 +38,7 @@
 			possible improvement: use ${project.version} to keep default version of modules consistent
 			<version>1.2</version>
 		</dependency> -->
-
+		<!-- possible improvement: use JQuery Webjars -->
     </dependencies>
     
 </project>

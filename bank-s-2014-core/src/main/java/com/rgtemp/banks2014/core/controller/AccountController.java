@@ -17,12 +17,13 @@ public class AccountController {
 	 * 		case there are complex logic and business logic for operations
 	*/
 	
-	@RequestMapping(value = "/acccounts", method = RequestMethod.GET)
+	@RequestMapping(value = "/accounts", method = RequestMethod.GET)
 	public ModelAndView list() {
 		//http://localhost:8080/bank/acccounts
-		ModelAndView model = new ModelAndView("list");
+		ModelAndView model = new ModelAndView("account/list");
 		List<Account_copy> accounts = getAccounts();
 		model.addObject("accounts", accounts);
+		model.addObject("uriContext", "accounts");
 		
 		return model;
 	}
@@ -43,7 +44,7 @@ public class AccountController {
 		return list;
 	}
 	
-	@RequestMapping(value = "/acccounts/{id}", method = RequestMethod.GET)
+	@RequestMapping(value = "/accounts/{id}", method = RequestMethod.GET)
 	public ModelAndView show(@PathVariable Long id) {
 		/* possible improvement: if not found for the given id
 		 * 		set error status to 404 or
@@ -55,7 +56,7 @@ public class AccountController {
 		return model;
 	}
 	
-	@RequestMapping(value = "/acccounts/{id}", method = RequestMethod.PUT)
+	@RequestMapping(value = "/accounts/{id}", method = RequestMethod.PUT)
 	public ModelAndView update(@PathVariable Long id) {
 		/* possible improvement: if not found for the given id
 		 * 		set error status to 404 or
@@ -70,7 +71,7 @@ public class AccountController {
 		return model;
 	}
 	
-	@RequestMapping(value = "/acccounts", method = RequestMethod.POST)
+	@RequestMapping(value = "/accounts", method = RequestMethod.POST)
 	public ModelAndView create() {
 		/* possible improvement: return id of created resource
 		*/
@@ -81,7 +82,7 @@ public class AccountController {
 		return model;
 	}
 	
-	@RequestMapping(value = "/acccounts/{id}", method = RequestMethod.DELETE)
+	@RequestMapping(value = "/accounts/{id}", method = RequestMethod.DELETE)
 	public ModelAndView delete(@PathVariable Long id) {
 		/* possible improvement: if not found for the given id
 		 * 		set error status to 404 or
