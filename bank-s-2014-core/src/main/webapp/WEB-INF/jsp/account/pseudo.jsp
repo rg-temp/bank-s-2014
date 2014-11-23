@@ -28,6 +28,7 @@ assign function handler
             HTML4.01/HTML5 standard
     check if script can be autoclosed
     group each entry in a div with dinamically generated id
+    validation should be performed client- and server-side
 --%>
 });
 </script>

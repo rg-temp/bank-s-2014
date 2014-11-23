@@ -19,5 +19,5 @@ http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd">
 	<!-- possible improvement: Add default error views -->
 	
 	<mvc:resources mapping="/resources/**" location="/resources/" />
-
+	<mvc:annotation-driven />
 </beans>
