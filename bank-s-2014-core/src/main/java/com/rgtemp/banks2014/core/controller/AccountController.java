@@ -3,6 +3,7 @@ package com.rgtemp.banks2014.core.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -13,9 +14,9 @@ import com.rgtemp.banks2014.model.Account_copy;
 @Controller
 public class AccountController {
 	
-	@RequestMapping(value = "/list", method = RequestMethod.GET)
+	@RequestMapping(value = "/acccounts", method = RequestMethod.GET)
 	public ModelAndView list() {
-		//http://localhost:8080/bank/list
+		//http://localhost:8080/bank/acccounts
 		ModelAndView model = new ModelAndView("list");
 		List<Account_copy> accounts = getAccounts();
 		model.addObject("accounts", accounts);
@@ -37,6 +38,15 @@ public class AccountController {
 		list.add(account);
  
 		return list;
+	}
+	
+	@RequestMapping(value = "/acccounts/{id}", method = RequestMethod.GET)
+	public ModelAndView show(@PathVariable Long id) {
+		ModelAndView model = new ModelAndView("show");
+//		Account_copy account = accountDao.findById(id);
+//		model.addObject("account", account);
+		
+		return model;
 	}
 
 }
