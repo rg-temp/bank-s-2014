@@ -74,6 +74,20 @@ public class AccountController {
 	@RequestMapping(value = "/accounts", method = RequestMethod.POST)
 	public ModelAndView create() {
 		/* possible improvement: return id of created resource
+		 * if some of the fields are considered to contain sensitive information,
+		 * 		use js to send as byte array, after persisted on the controller
+		 * 		write with 2 or more passes on the write array
+		 * 		1st pass 100% of positions with random values
+		 * 		2nd pass ~75% of random positions with random values
+		 * 		
+		 *		Writing on the byte array reduces the window of time 
+		 *		for which the sensitive information is stored in the memory 
+		 *		(i.e.: reading memory addresses on the server where the 
+		 *		application is running, accessing a memory dump of the
+		 *		server).
+		 *		Writing several passes reduces the chances of recovering 
+		 *		information from the physical device (i.e.: replacing or 
+		 *		accessing memory hardware of the server) 
 		*/
 		ModelAndView model = new ModelAndView("show");
 //		Account_copy account = accountDao.findById(id);
