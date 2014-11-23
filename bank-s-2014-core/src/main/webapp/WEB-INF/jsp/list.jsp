@@ -6,15 +6,18 @@
 <body>
 
 <h1>Accounts</h1>
-<h2>List/Show</h2>
+<h2>List and Show</h2>
 <c:if test="${not empty accounts}">
 	<ul>
 		<c:forEach var="accountInstance" items="${accounts}">
+			<li>
 		 	<form action="submit" method="post">
 		 		<%-- use acc_id since values or html attribute should ignore case --%>
-				AccId: <input type="text" name="acc_id"><span></span>
-				IBAN: <input type="text" name="iban"><span></span>
-				BIC: <input type="text" name="bic">
+				AccId: <input type="text" name="acc_id" value="${accountInstance.accId}">
+				<span></span>
+				IBAN: <input type="text" name="iban" value="${accountInstance.iban}">
+				<span></span>
+				BIC: <input type="text" name="bic" value="${accountInstance.bic}">
 			 	<div id="buttons">
 					<input type="submit" name="action" value="update">
 					<input type="submit" name="action" value="delete">
@@ -22,7 +25,7 @@
 					<div style="clear:both"></div>
 			 	</div>
 			</form>
-			<li>${accountInstance.accId}, ${accountInstance.iban}, ${accountInstance.bic}</li>
+			</li>
 		</c:forEach>
 	</ul>
 </c:if>
@@ -47,6 +50,7 @@
 			REST methods
 	use Spring flash scope to display errors after submitting
 	for the delete button ask for confirmation or display a simple js alert dialog
+	field AccId should not be editable
 	move logic out of the same view
 		one view for list, only lists main fields
 			has a show button to browse to a show action
@@ -59,5 +63,6 @@
 		one view for edit, has delete button
 			to list with flash message with the result of the delete operation
 		views create and edit should reuse the same form partial template view
+	use spring i18n for the content
 --%>
 </html>
