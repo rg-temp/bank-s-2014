@@ -14,13 +14,13 @@ import com.rgtemp.banks2014.model.Account_copy;
 public class AccountController {
 	
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
-	public String list() {
+	public ModelAndView list() {
 		//http://localhost:8080/bank/list
 		ModelAndView model = new ModelAndView("list");
 		List<Account_copy> accounts = getAccounts();
 		model.addObject("accounts", accounts);
 		
-		return "list";
+		return model;
 	}
 
 	private List<Account_copy> getAccounts() {
