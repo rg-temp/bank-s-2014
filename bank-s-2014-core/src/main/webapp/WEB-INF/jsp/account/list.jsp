@@ -74,20 +74,21 @@
 --%>
 <script>
 $(document).ready(function() {
-	"use strict";
-<%-- Declare function for each button --%>
+"use strict";
 var URI_CONTEXT = "${uriContext}";
-var deleteF = function(form) {
+<%-- Declare function for each button --%>
+var deleteF = function() {
 	console.debug(">ini del");
 	<%-- Read values from dom --%>
 	var id = "-1";
 	<%-- prepare rest url --%>
 	var slug = URI_CONTEXT + "/" + id;
+	var form = $(this).closest("form")
 	<%-- set request method --%>
 	<%-- add parameters --%>
 	<%-- add callbacks --%>
 	<%-- update form action --%>
-	form.action("restDel");
+	form.attr("action", "restDel");
 	<%-- execute request --%>
 	form.submit();	
 }
@@ -95,6 +96,7 @@ var deleteF = function(form) {
 <%-- Attach function to each button --%>
 var listForms = $("form.list");
 var delButtons = listForms.find("input[value=delete]");
+var handler ;
 delButtons.bind("click", deleteF);
 
 <%-- possible improvements: 
