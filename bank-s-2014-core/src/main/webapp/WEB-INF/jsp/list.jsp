@@ -58,10 +58,11 @@
 			has an edit button for each entry to browse to an edit action 
 		one view for show, shows detailed data for each account field 
 		one view for create, browses 
-			to list with flash message if create was successful
+			to list or show with flash message if create was successful
 			to create with flash message if there are errors
 		one view for edit, has delete button
-			to list with flash message with the result of the delete operation
+			to list or show with flash message with the result of the 
+					delete or edit operation
 		views create and edit should reuse the same form partial template view
 	use spring i18n for the content
 --%>

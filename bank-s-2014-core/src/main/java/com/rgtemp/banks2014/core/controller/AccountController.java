@@ -13,6 +13,9 @@ import com.rgtemp.banks2014.model.Account_copy;
 
 @Controller
 public class AccountController {
+	/* possible improvement: use AccountService to interact with Accounts, in 
+	 * 		case there are complex logic and business logic for operations
+	*/
 	
 	@RequestMapping(value = "/acccounts", method = RequestMethod.GET)
 	public ModelAndView list() {
@@ -42,7 +45,50 @@ public class AccountController {
 	
 	@RequestMapping(value = "/acccounts/{id}", method = RequestMethod.GET)
 	public ModelAndView show(@PathVariable Long id) {
+		/* possible improvement: if not found for the given id
+		 * 		set error status to 404 or
+		 * 		set flash message and redirect to list()
+		*/
 		ModelAndView model = new ModelAndView("show");
+//		Account_copy account = accountDao.findById(id);
+//		model.addObject("account", account);
+		return model;
+	}
+	
+	@RequestMapping(value = "/acccounts/{id}", method = RequestMethod.PUT)
+	public ModelAndView update(@PathVariable Long id) {
+		/* possible improvement: if not found for the given id
+		 * 		set error status to 404 or
+		 * 		set flash message and redirect to list()
+		 * if validation fails, flash and redirect to update view with 
+		 * 		fields prefilled with entered values
+		*/
+		ModelAndView model = new ModelAndView("show");
+//		Account_copy account = accountDao.findById(id);
+//		model.addObject("account", account);
+		
+		return model;
+	}
+	
+	@RequestMapping(value = "/acccounts", method = RequestMethod.POST)
+	public ModelAndView create() {
+		/* possible improvement: return id of created resource
+		*/
+		ModelAndView model = new ModelAndView("show");
+//		Account_copy account = accountDao.findById(id);
+//		model.addObject("account", account);
+		
+		return model;
+	}
+	
+	@RequestMapping(value = "/acccounts/{id}", method = RequestMethod.DELETE)
+	public ModelAndView delete(@PathVariable Long id) {
+		/* possible improvement: if not found for the given id
+		 * 		set error status to 404 or
+		 * 		set flash message and redirect to list()
+		 * if cannot be deleted, flash and redirect to show()
+		*/
+		ModelAndView model = new ModelAndView("list");
 //		Account_copy account = accountDao.findById(id);
 //		model.addObject("account", account);
 		

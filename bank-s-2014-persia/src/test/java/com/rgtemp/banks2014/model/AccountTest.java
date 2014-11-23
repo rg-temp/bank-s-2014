@@ -22,6 +22,16 @@ public class AccountTest {
 	 * thatCreatingExistingThrowsAnException(), 
 	 * thatReadingNonExistingFoo(),
 	 * thatUpdatingNonExistingLogsAWarning(),
+	 * 
+	 * Use Spring annotations for testing 
+	 * 		@RunWith(SpringJUnit4ClassRunner.class)
+	 * 		@ContextConfiguration(locations = { "Beans-test.xml" })
+	 * 
+	 * Use JUnit 4 @BeforeClass annotations 
+	 * 		to prepare db on integration tests
+	 * 		to mock db access on unit tests
+	 * 
+	 * Use Mockito for tests that involve services or different model classes
 	 */
 	
 	@Test
