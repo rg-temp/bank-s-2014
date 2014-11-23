@@ -1,3 +1,4 @@
+<%@page pageEncoding="UTF-8" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <html>
 <head>
@@ -75,18 +76,20 @@
 $(document).ready(function() {
 	"use strict";
 <%-- Declare function for each button --%>
-<%--
-Read values from dom
-prepare rest url
-set request method
-add parameters
-add callbacks
-execute request
---%>
-var deleteF = function() {
+var URI_CONTEXT = "${uriContext}";
+var deleteF = function(form) {
 	console.debug(">ini del");
-	
-	return false;
+	<%-- Read values from dom --%>
+	var id = "-1";
+	<%-- prepare rest url --%>
+	var slug = URI_CONTEXT + "/" + id;
+	<%-- set request method --%>
+	<%-- add parameters --%>
+	<%-- add callbacks --%>
+	<%-- update form action --%>
+	form.action("restDel");
+	<%-- execute request --%>
+	form.submit();	
 }
 
 <%-- Attach function to each button --%>
