@@ -26,6 +26,18 @@
             <version>3.1.0</version>
             <scope>provided</scope>
         </dependency>
+        <!-- jstl -->
+		<dependency>
+			<groupId>jstl</groupId>
+			<artifactId>jstl</artifactId>
+			<version>1.2</version>
+		</dependency>
+		<!-- <dependency>
+			<groupId>com.github.rg-temp</groupId>
+			<artifactId>bank-s-2014-persia</artifactId>
+			possible improvement: use ${project.version} to keep default version of modules consistent
+			<version>1.2</version>
+		</dependency> -->
 
     </dependencies>
     
