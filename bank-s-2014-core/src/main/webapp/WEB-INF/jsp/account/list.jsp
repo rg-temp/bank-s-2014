@@ -1,7 +1,7 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <html>
 <head>
-	<script src="<c:url value="/resources/js/jquery-2.1.1.min.js" />"></script>
+	
     <title>List</title>
 </head>
 <body>
@@ -38,10 +38,7 @@
 	<input type="submit" name="action" value="reset">
 </form>
 <script>
-$(document).ready(function() {
-	<%-- Declare function for each button --%>
-	<%-- Attach function to each button --%>
-});
+
   </script>
 
 </body>
