@@ -19,7 +19,7 @@ public class AccountController {
 	
 	@RequestMapping(value = "/accounts", method = RequestMethod.GET)
 	public ModelAndView list() {
-		//http://localhost:8080/bank/acccounts
+		//http://localhost:8080/bank/accounts
 		ModelAndView model = new ModelAndView("account/list");
 		List<Account_copy> accounts = getAccounts();
 		model.addObject("accounts", accounts);
@@ -46,9 +46,11 @@ public class AccountController {
 	
 	@RequestMapping(value = "/accounts/{id}", method = RequestMethod.GET)
 	public ModelAndView show(@PathVariable Long id) {
-		/* possible improvement: if not found for the given id
-		 * 		set error status to 404 or
-		 * 		set flash message and redirect to list()
+		/* possible improvement: if UI needs to be implemented on another 
+		 * 			controller instead of ajax call
+		 * 		if not found for the given id
+		 * 			set error status to 404 or
+		 * 			set flash message and redirect to list()
 		*/
 		ModelAndView model = new ModelAndView("show");
 //		Account_copy account = accountDao.findById(id);
@@ -58,11 +60,13 @@ public class AccountController {
 	
 	@RequestMapping(value = "/accounts/{id}", method = RequestMethod.PUT)
 	public ModelAndView update(@PathVariable Long id) {
-		/* possible improvement: if not found for the given id
-		 * 		set error status to 404 or
-		 * 		set flash message and redirect to list()
-		 * if validation fails, flash and redirect to update view with 
-		 * 		fields prefilled with entered values
+		/* possible improvement: if UI needs to be implemented on another 
+		 * 			controller instead of ajax call
+		 * 		if not found for the given id
+		 * 			set error status to 404 or
+		 * 			set flash message and redirect to list()
+		 * 		if validation fails, flash and redirect to update view with 
+		 * 			fields prefilled with entered values
 		*/
 		ModelAndView model = new ModelAndView("show");
 //		Account_copy account = accountDao.findById(id);
@@ -98,10 +102,12 @@ public class AccountController {
 	
 	@RequestMapping(value = "/accounts/{id}", method = RequestMethod.DELETE)
 	public ModelAndView delete(@PathVariable Long id) {
-		/* possible improvement: if not found for the given id
-		 * 		set error status to 404 or
-		 * 		set flash message and redirect to list()
-		 * if cannot be deleted, flash and redirect to show()
+		/* possible improvement: if UI needs to be implemented on another 
+		 * 			controller instead of ajax call
+		 * 		if not found for the given id
+		 * 			set error status to 404 or
+		 * 			set flash message and redirect to list()
+		 * 		if cannot be deleted, flash and redirect to show()
 		*/
 		ModelAndView model = new ModelAndView("list");
 //		Account_copy account = accountDao.findById(id);

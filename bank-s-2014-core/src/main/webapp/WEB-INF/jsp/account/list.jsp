@@ -78,19 +78,18 @@ $(document).ready(function() {
 var URI_CONTEXT = "${uriContext}";
 <%-- Declare function for each button --%>
 var deleteF = function() {
-	console.debug(">ini del");
-	<%-- Read values from dom --%>
-	var id = "-1";
+	console.log(">ini del");
 	<%-- prepare rest url --%>
 	var slug = URI_CONTEXT + "/" + id;
-	var form = $(this).closest("form")
-	<%-- set request method --%>
-	<%-- add parameters --%>
-	<%-- add callbacks --%>
-	<%-- update form action --%>
-	form.attr("action", "restDel");
+	console.log("BFR xhr");
 	<%-- execute request --%>
-	form.submit();	
+$.ajax({
+	url: slug,
+	data: $(this).closest("form").serialize(),
+	type: "DELETE"
+});
+
+	return false;
 }
 
 <%-- Attach function to each button --%>
@@ -109,10 +108,15 @@ delButtons.bind("click", deleteF);
             will be provided from backend.
     check if form or input HTML nodes can have id attributes according to 
             HTML4.01/HTML5 standard
-    check if script can be autoclosed
-    group each entry in a div with dinamically generated id
+    check if script tag can be autoclosed/empty
     validation should be performed client- and server-side
     add handler to button instead of replacing all the possible existing handlers
+    memoize pattern for each REST operation
+    use regex with replacement placeholders for url generation
+    use adaptee pattern on how the strings for the url are obtained
+    disable the buttons after the call is initiated, enable them back again
+    		after the call has finished
+	prevent for from submitting, check return false or button.bind()
 --%>
 });
 </script>
